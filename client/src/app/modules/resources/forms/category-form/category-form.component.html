@@ -1,0 +1,42 @@
+<form [formGroup]="categoryForm" id="categoryForm" (ngSubmit)="onSubmit()">
+  <ion-item>
+    <ion-label position="floating">Category Name</ion-label>
+    <ion-input formControlName="name" autofucus="true"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Description</ion-label>
+    <ion-textarea formControlName="description" autoGrow="true" wrap="true"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Image URL</ion-label>
+    <ion-input formControlName="imageUrl"></ion-input>
+  </ion-item>
+  <ion-list formArrayName="suggestedDetails" id="suggestedDetailsDiv" lines="inset">
+    <ion-item lines="none">
+      <ion-label>Suggested Details</ion-label>
+    </ion-item>
+    <!-- <small>Example: age-range</small> -->
+    <ion-item *ngFor="let d of suggestedDetails.controls; let i=index">
+      <!-- <ion-col> -->
+      <ion-input [formControlName]="i" (keyUp.enter)="addSuggestedDetailIfAtLeastOneEntry()"></ion-input>
+      <!-- </ion-col> -->
+      <!-- <ion-col ion-justify-content-end> -->
+      <ion-button (click)="removeSuggestedDetail(i)" fill="none" size="small">
+        <ion-icon slot="icon-only" name="trash-outline" color="danger"></ion-icon>
+      </ion-button>
+      <!-- </ion-col> -->
+    </ion-item>
+    <ion-item lines="none">
+      <ion-button type="button" color="" fill="clear" expand="block" slot="end" (click)="addSuggestedDetailIfAtLeastOneEntry()">
+        <ion-icon name="add" slot="icon-only"></ion-icon>
+        <ion-label>Add suggested detail</ion-label>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-button type="submit" color="primary" expand="block">
+    Submit
+  </ion-button>
+  <ion-button color="medium" (click)="confirmCancel()" slot="end">
+    Cancel
+  </ion-button>
+</form>

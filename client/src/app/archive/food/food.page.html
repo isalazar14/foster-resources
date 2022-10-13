@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>food</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col *ngFor="let res of foodResources" size="12" size-md="4" size-lg="3">
+        <ion-card>
+          <img [src]="res.imgPath">
+          <ion-card-title class="ion-margin"><a [href]="res.url" target="_blank">{{res.title}}</a></ion-card-title>
+          <!-- <ion-card-content>
+          </ion-card-content> -->
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

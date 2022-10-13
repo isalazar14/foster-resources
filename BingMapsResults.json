@@ -1,0 +1,55 @@
+{
+  "authenticationResultCode": "ValidCredentials",
+  "brandLogoUri": "http://dev.virtualearth.net/Branding/logo_powered_by.png",
+  "copyright": "Copyright © 2020 Microsoft and its suppliers. All rights reserved. This API cannot be accessed and the content and any results may not be used, reproduced or transmitted in any manner without express written permission from Microsoft Corporation.",
+  "resourceSets": [
+    {
+      "estimatedTotal": 1,
+      "resources": [
+        {
+          "__type": "Location:http://schemas.microsoft.com/search/local/ws/rest/v1",
+          "bbox": [
+            47.66045728242932,
+            -122.32039679388554,
+            47.66818271757067,
+            -122.30510320611445
+          ],
+          "name": "4740 University Way NE, Seattle, WA 98105",
+          "point": {
+            "type": "Point",
+            "coordinates": [47.66432, -122.31275]
+          },
+          "address": {
+            "addressLine": "4740 University Way NE",
+            "adminDistrict": "WA",
+            "adminDistrict2": "King County",
+            "countryRegion": "United States",
+            "formattedAddress": "4740 University Way NE, Seattle, WA 98105",
+            "locality": "Seattle",
+            "postalCode": "98105"
+          },
+          "confidence": "Medium",
+          "entityType": "Address",
+          "geocodePoints": [
+            {
+              "type": "Point",
+              "coordinates": [47.66432, -122.31275],
+              "calculationMethod": "Rooftop",
+              "usageTypes": ["Display"]
+            },
+            {
+              "type": "Point",
+              "coordinates": [47.6643172381997, -122.313064754644],
+              "calculationMethod": "Rooftop",
+              "usageTypes": ["Route"]
+            }
+          ],
+          "matchCodes": ["Good"]
+        }
+      ]
+    }
+  ],
+  "statusCode": 200,
+  "statusDescription": "OK",
+  "traceId": "60e95baff6ae4770b515fc2143562e9b|CO00001122|0.0.0.1|Ref A: C2F871C1378F4187A0B925E765DFD879 Ref B: CO1EDGE0120 Ref C: 2020-01-31T19:55:32Z"
+}

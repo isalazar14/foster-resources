@@ -1,0 +1,100 @@
+  <!-- <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+        <ion-back-button *ngIf="mode != 'home'" slot="icon-only" defaultHref="resources"></ion-back-button>
+        <ion-button *ngIf="mode != 'home'" routerLink="/resources" routerDirection="root" size="sm">
+          <ion-icon name="home" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title *ngIf="mode == 'category'">{{(category | async)?.name | titlecase}} Resources</ion-title>
+      <ion-title *ngIf="mode == 'search'">Search results for "{{query | titlecase}}"</ion-title>
+      <ion-buttons slot="end">
+        <ion-button *ngIf="mode == 'home' || mode == 'category'" slot="end" routerLink="new">
+          <ion-icon name="add" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header> -->
+  
+  <!-- <ion-content> -->
+    <ng-template #loading>
+      <!-- <ion-list *ngIf="isLoading"> -->
+      <div class="ion-text-center">
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
+      
+      <!-- <ion-list>
+        <ion-item *ngFor="let _ of [1,2,3,4,5,6,7]">
+          <ion-thumbnail slot="start">
+            <ion-skeleton-text animated="true"></ion-skeleton-text>
+          </ion-thumbnail>
+          <ion-label>
+            <h2>
+              <ion-skeleton-text animated="true" style="width: 50%;"></ion-skeleton-text>
+            </h2>
+            <h2>
+              <ion-skeleton-text animated="true" style="width: 30%;"></ion-skeleton-text>
+            </h2>
+          </ion-label>
+        </ion-item>
+      </ion-list> -->
+    </ng-template>
+  
+  
+    <!-- <ng-container *ngIf="!isLoading; else skeleton"> -->
+    <ng-container *ngIf="resources | async as resources; else loading">
+      <ion-item *ngIf="mode == 'category'" lines="none">
+        <p>{{(category | async)?.description}}</p>
+      </ion-item>
+  
+      <ng-template #noResources>
+        <div class="ion-text-center">
+          <h3>No resources</h3>
+        </div>
+      </ng-template>
+  
+      <ion-grid>
+        <!-- <ion-row class="ion-justify-content-center"> -->
+        <ion-row>
+          <ion-col *ngFor="let res of resources" size="12" sizeSm="6" offsetSm="0" sizeLg="4" sizeXl="3">
+            <ion-card [routerLink]=res._id routerDirection="forward">
+            <!-- <ion-card button="true" [href]="[res._id]" routerDirection="forward"> -->
+              <ion-card-header>
+                <!-- <ion-label>{{res.name | titlecase}}</ion-label> -->
+                <ion-img src='{{res.imageUrl ? res.imageUrl : "assets/img/" +  res.name + ".png"}}' alt=""></ion-img>
+                <ion-card-title text-wrap text-center>{{res.name | titlecase}}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-card-subtitle>
+                  Categories: <span *ngFor="let cat of res.categories; let i = index">{{i > 0 ? ', ' : ''}}{{cat.name |
+                    titlecase}}</span>
+                </ion-card-subtitle>
+                <p>{{res.description}}</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+      <!-- <ion-list *ngIf="(resources | async) as resources; else noResources"> -->
+      <!-- <ion-list *ngIf="resources.length > 0; else noResources"> -->
+      <!-- <ion-list>
+        <ion-item *ngFor="let res of resources | async" lines="full">
+          <ion-card [routerLink]=[res._id] routerDirection="forward">
+            <ion-card-header>
+              <ion-img src='{{res.imageUrl ? res.imageUrl : "assets/img/" +  res.name + ".png"}}' alt=""></ion-img>
+              <ion-card-title text-wrap text-center>{{res.name | titlecase}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-card-subtitle>
+                Categories: <span *ngFor="let cat of res.categories; let i = index">{{i > 0 ? ', ' : ''}}{{cat.name |
+                  titlecase}}</span>
+              </ion-card-subtitle>
+              <p>{{res.description}}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </ion-list> -->
+    </ng-container>
+  <!-- </ion-content> -->

@@ -1,0 +1,63 @@
+<ion-menu contentId="main-content" type="overlay">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Categories</ion-title>
+      <ion-buttons *ngIf="!isLoading && isUserAdmin" slot="end">
+        <ion-button slot="end" color="primary" fill="clear" (click)="toggleManageMode()">
+          <ion-label>{{isManageModeOn ? "Done" : "Edit"}}</ion-label>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div *ngIf="!isLoading && isManageModeOn" class="ion-text-end">
+      <ion-menu-toggle autoHide="false">
+        <ion-button fill="clear" routerLink="resources/new-category">
+          <ion-icon name="add" slot="icon-only"></ion-icon>
+          <ion-label>New Category</ion-label>
+        </ion-button>
+      </ion-menu-toggle>
+    </div>
+
+    <ion-list *ngIf="categories | async as categories; else loading">
+      <ion-menu-toggle *ngFor="let cat of categories" autoHide="false">
+        <!-- <ion-menu-toggle auto-hide="false" *ngFor="let cat of categories"> -->
+        <ion-item routerLink="['/resources', cat.urlFriendlyName || cat.name, isManageModeOn ? 'edit' : '']" routerDirection="forward">
+          <!-- <ion-icon slot="start" [name]="cat.imageUrl"></ion-icon> -->
+
+          <ion-thumbnail slot="start" style="--border-radius:0">
+            <!-- <ion-img [src]="cat.imageUrl"></ion-img> -->
+            <img src='{{cat.imageUrl || "assets/img/" +  cat.name + ".png"}}' alt="" />
+          </ion-thumbnail>
+          <ion-label>
+            {{cat.name | titlecase}}
+          </ion-label>
+          <ion-button *ngIf="isManageModeOn" fill="clear" slot="end">
+            <ion-label>Edit</ion-label>
+          </ion-button>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+
+    <ng-template #loading>
+      <ion-list>
+        <ion-item *ngFor="let _ of [1,2,3,4,5,6,7]">
+          <ion-thumbnail slot="start">
+            <ion-skeleton-text animated="true"></ion-skeleton-text>
+          </ion-thumbnail>
+          <ion-label>
+            <h2>
+              <ion-skeleton-text animated="true" style="width: 50%;"></ion-skeleton-text>
+            </h2>
+            <h2>
+              <ion-skeleton-text animated="true" style="width: 30%;"></ion-skeleton-text>
+            </h2>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-template>
+  </ion-content>
+</ion-menu>

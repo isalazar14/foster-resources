@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- <ion-menu-button slot="icon-only"></ion-menu-button> -->
+      <ion-menu-button></ion-menu-button>
+      <!-- <ion-back-button slot="icon-only" defaultHref="resources"></ion-back-button> -->
+      <ion-back-button slot="icon-only" defaultHref="resources"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recently Added Resources</ion-title>
+    <ion-buttons slot="end">
+      <ion-button slot="end" routerLink="new">
+        <ion-icon name="add" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-resource-list [resources]="resources"></app-resource-list>
+</ion-content>

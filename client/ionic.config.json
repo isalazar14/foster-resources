@@ -1,0 +1,7 @@
+{
+  "name": "foster-resources",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button slot="icon-only"></ion-menu-button>
+      <ion-back-button
+        defaultHref="/resources"
+        slot="icon-only"
+      ></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title *ngIf="category | async else title_createNew">Edit {{((category | async).name | titlecase)}} Category</ion-title>
+    <ng-template #title_createNew>
+      <ion-title>Create New Category</ion-title>
+    </ng-template> -->
+    <ion-title *ngIf="isNew else title_editCategory"
+      >New Category</ion-title
+    >
+    <ng-template #title_editCategory>
+      <ion-title
+        >Edit {{((category | async).name | titlecase)}} Category</ion-title
+      >
+    </ng-template>
+    <ion-button
+      *ngIf="!isNew && (category|async) as category"
+      slot="end"
+      color="danger"
+      fill="clear"
+      (click)="confirmDelete(category)"
+    >
+      <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" sizeLg="10" sizeXl="8">
+        <app-category-form
+          [isNew]="isNew"
+          [activeCategory]="isNew ? null : category"
+          [submitHandler]="isNew ? createCategoryLocal : updateCategoryLocal"
+        ></app-category-form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
